@@ -101,10 +101,6 @@ Three steps, no changes to `sensor_poll_one()` or the thread logic:
   the exact compatible string from the driver's `.yaml` binding file, or
   no `struct device` gets generated and you'll get a linker error like
   `undefined reference to __device_dts_ord_N`.
-- **Devicetree overlay macros need an explicit `#include`.** Bare
-  constants like `I2C_BITRATE_FAST` won't resolve unless you
-  `#include <zephyr/dt-bindings/i2c/i2c.h>` at the top of the overlay —
-  otherwise just use the literal number (e.g. `<400000>`).
 - **`wifi_net_wait_connected()` is one-shot.** Don't call it more than
   once per connect event (e.g. from a periodic thread) — use
   `wifi_net_is_connected()` for repeated, non-blocking checks instead.
